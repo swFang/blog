@@ -1,11 +1,9 @@
-import jsonPlaceholder from '../apis/jsonPlaceholder.js';
-import reduxThunk from 'redux-thunk';
+import jsonPlaceholder from "../apis/jsonPlaceholder.js";
 
-export const fetchPosts =  () => {
-    const promise =  jsonPlaceholder.get('/posts');
+export const fetchPosts = () => {
+  return async (dispatch)=> {
+    const response = await jsonPlaceholder.get("/posts");
 
-    return {
-        type: 'FETCH_POST',
-        payload : promise
-    };
+    dispatch({ type:'FETCH_POSTS', payload: response })
+  };
 };
